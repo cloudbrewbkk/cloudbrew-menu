@@ -530,7 +530,7 @@
     const opts = {};
     // ice
     const ice = container.querySelector('.opt-ice');
-    if(ice && ice.checked){opts.ice='No Ice'; opts.iceAdd = Number(ice.dataset.add||0)}
+    if(ice && ice.checked){opts.ice='แยกน้ำแข็ง'; opts.iceAdd = Number(ice.dataset.add||0)}
     // milk
     const milk = container.querySelector('.milk-select');
     if(milk) opts.milk = milk.value;
@@ -590,7 +590,7 @@
     const lines = [];
     if(opts.signature) lines.push('Signature: '+opts.signature);
     if(opts.milk) lines.push('Milk: '+opts.milk);
-    if(opts.ice==='No Ice') lines.push('No Ice');
+    if(opts.ice==='แยกน้ำแข็ง') lines.push('แยกน้ำแข็ง');
     // radio options
     Object.keys(opts).forEach(k=>{ if(k.startsWith('bean')||k.startsWith('sweet')||k.includes('bean-')||k.includes('sweet')) lines.push(`${k.replace(/-/g,' ')}: ${opts[k]}`) })
     if(opts.desc) lines.push(opts.desc);
