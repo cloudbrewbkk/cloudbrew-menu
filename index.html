@@ -4,42 +4,259 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cloudbrew — เมนูร้านกาแฟ</title>
-  <style> 
-    :root{--bg:#f7f7f9;--card:#ffffff;--accent:#284C9A;--muted:#6b7280}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;background:var(--bg);color:#111}
-    .container{max-width:1100px;margin:24px auto;padding:20px}
-    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-    h1{margin:0;font-size:22px}
-    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
-    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.05)}
-    .category{margin-bottom:14px}
-    .item{display:flex;gap:12px;padding:10px;border-radius:10px;border:1px solid #eef2ff;margin-bottom:10px}
-    .item img {width: 140px;height: 140px;object-fit: cover;border-radius: 12px;}
-    .item .meta{flex:1}
-    .item h3{margin:0;font-size:16px}
-    .price{font-weight:700}
-    .small{font-size:13px;color:var(--muted)}
-    .btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
-    .btn.secondary{background:#e6eefc;color:var(--accent)}
-    .options{margin-top:8px;font-size:14px}
-    .option-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-    label.opt{background:#f3f4f6;padding:6px 8px;border-radius:8px;cursor:pointer;border:1px solid #f0f0f0}
-    aside .cart-item{display:flex;justify-content:space-between;gap:10px;padding:8px;border-radius:8px;border:1px dashed #e6e9ef;margin-bottom:8px}
-    .muted{color:var(--muted)}
-    footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px}
-    .flex{display:flex;gap:10px;align-items:center}
-    input[type='number']{width:64px;padding:6px}
-    textarea{width:100%;min-height:64px;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
-    .lang-toggle{display:flex;gap:8px}
-    .translate-block{background:#fff;border-radius:8px;padding:8px;margin-top:8px;border:1px solid #f1f5f9}
-    .copy-success{color:green;font-weight:600}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}.container{padding:12px}}
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --accent: #284C9A;
+      --accent-light: #edf2ff;
+      --muted: #6b7280;
+      --radius: 14px;
+      --shadow: 0 6px 16px rgba(40, 76, 154, 0.08);
+    }
+  
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      margin: 0;
+      background: var(--bg);
+      color: #111827;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+  
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+  
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+  
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+  
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+    }
+  
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+  
+    .category {
+      margin-bottom: 16px;
+    }
+  
+    .item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+  
+    .item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 10px rgba(40, 76, 154, 0.1);
+      transform: translateY(-2px);
+    }
+  
+    .item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  
+    .meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .item h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111;
+    }
+  
+    .price {
+      font-weight: 700;
+      color: var(--accent);
+    }
+  
+    .small {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+  
+    .btn:hover {
+      background: #1f3f85;
+      box-shadow: 0 4px 10px rgba(40, 76, 154, 0.2);
+    }
+  
+    .btn.secondary {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+  
+    .btn.secondary:hover {
+      background: #dbe4ff;
+    }
+  
+    .options {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+  
+    .option-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+  
+    label.opt {
+      background: #f1f5f9;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      transition: 0.2s;
+    }
+  
+    label.opt:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+  
+    aside .cart-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px dashed #e2e8f0;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+  
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  
+    input[type='number'], textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+  
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+    }
+  
+    .translate-block {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #e5e7eb;
+    }
+  
+    .copy-success {
+      color: #22c55e;
+      font-weight: 600;
+    }
+  
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 16px;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      .item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .item img {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+      }
+      .meta {
+        align-items: center;
+      }
+      .btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+      }
+    }
   </style>
+  
 </head>
 <body>
   <div class="container">
     <header>
       <div class="logo">
+        <img src="image/1.png" alt="Cloudbrew Logo">
       </div>
         <h1>Cloudbrew — เมนู</h1>
         <div class="small">เลือกเมนู ใส่ตัวเลือก กดใส่ตะกร้า สรุป และคัดลอกข้อความเพื่อส่งใน LINE</div>
@@ -52,7 +269,7 @@
         <section class="card category" id="promo">
           <h2>หมวด: Promotion</h2>
 
-          <div class="item" data-price="90" data-name="Special Beans TSCA2025 Rank12 (Americano)">
+          <div class="item" data-price="90" data-name="TSCA Rank12">
             <img src="image/LightRoast3.png" alt="TSCA2025" class="menu-image">
             <div class="meta">
               <h3>Special Beans TSCA2025 Rank12 (Americano) — 90฿</h3>
@@ -64,7 +281,7 @@
             </div>
           </div>
 
-          <div class="item" data-price="180" data-name="Americano TSCA2025 Rank12 + Signature Cloud">
+          <div class="item" data-price="180" data-name="TSCA Rank12 + Signature Cloud">
             <div class="meta">
               <h3>Americano TSCA2025 Rank12 + Signature Cloud — 180฿</h3>
               <div class="small">ตัวเลือก: Signature Cloud</div>
@@ -207,21 +424,21 @@
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="bean-iced-americano" value="Doi Chang"> (เข้ม) Doi Chang</label>
-                    <label class="opt"><input type="radio" name="bean-iced-americano" value="Cloud Blend" checked> (กลางเข้ม) Cloud Blend ✨Recommend✨</label>
-                    <label class="opt"><input type="radio" name="bean-iced-americano" value="Nam Pun Blend"> (กลาง) Nam Pun Blend</label>
-                    <label class="opt"><input type="radio" name="bean-iced-americano" value="Doi Sam Muen"> (กลาง) Doi Sam Muen</label>
-                    <label class="opt"><input type="radio" name="bean-iced-americano" value="Special Beans TSCA2025 Rank12"> Special Beans TSCA2025 Rank12🏆</label>
+                    <label class="opt"><input type="radio" name="bean" value="Doi Chang"> (เข้ม) Doi Chang</label>
+                    <label class="opt"><input type="radio" name="bean" value="Cloud Blend" checked> (กลางเข้ม) Cloud Blend ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="bean" value="Nam Pun Blend"> (กลาง) Nam Pun Blend</label>
+                    <label class="opt"><input type="radio" name="bean" value="Doi Sam Muen"> (กลาง) Doi Sam Muen</label>
+                    <label class="opt"><input type="radio" name="bean" value="TSCA Rank12"> Special Beans TSCA2025 Rank12🏆</label>
                   </div>
                 </div>
 
                 <div style="margin-top:8px"><strong>ระดับความหวาน:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="sweet-iced-americano" value="0%" checked> 0% ✨Recommend✨</label>
-                    <label class="opt"><input type="radio" name="sweet-iced-americano" value="25%"> 25%</label>
-                    <label class="opt"><input type="radio" name="sweet-iced-americano" value="50%"> 50%</label>
-                    <label class="opt"><input type="radio" name="sweet-iced-americano" value="75%"> 75%</label>
-                    <label class="opt"><input type="radio" name="sweet-iced-americano" value="100%"> 100%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="0%" checked> 0% ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="25%"> 25%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="50%"> 50%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="75%"> 75%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="100%"> 100%</label>
                   </div>
                 </div>
 
@@ -239,9 +456,9 @@
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="bean-orange" value="Light Roast"> คั่วอ่อน (Light Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-orange" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-orange" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="bean" value="Light Roast"> คั่วอ่อน (Light Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
                   </div>
                 </div>
               </div>
@@ -257,9 +474,9 @@
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="bean-coconut" value="Light Roast"> คั่วอ่อน (Light Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-coconut" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-coconut" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="bean" value="Light Roast"> คั่วอ่อน (Light Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
                   </div>
                 </div>
               </div>
@@ -273,9 +490,9 @@
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="bean-hl" value="Light Roast"> คั่วอ่อน (Light Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-hl" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-hl" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="bean" value="Light Roast"> คั่วอ่อน (Light Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
                   </div>
                 </div>
               </div>
@@ -293,16 +510,16 @@
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="bean-macchiato" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
-                    <label class="opt"><input type="radio" name="bean-macchiato" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium Roast" checked> คั่วกลาง (Medium Roast)</label>
+                    <label class="opt"><input type="radio" name="bean" value="Medium-Dark Roast"> กลางเข้ม (Medium-Dark Roast) ✨Recommend✨</label>
                   </div>
                 </div>
                 <div style="margin-top:8px"><strong>ระดับความหวาน:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="sweet-macchiato" value="25%"> 25%</label>
-                    <label class="opt"><input type="radio" name="sweet-macchiato" value="50%"> 50%</label>
-                    <label class="opt"><input type="radio" name="sweet-macchiato" value="75%" checked> 75% ✨Recommend✨</label>
-                    <label class="opt"><input type="radio" name="sweet-macchiato" value="100%"> 100%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="25%"> 25%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="50%"> 50%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="75%" checked> 75% ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="100%"> 100%</label>
                   </div>
                 </div>
 
@@ -320,11 +537,11 @@
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
                 <div style="margin-top:8px"><strong>ระดับความหวาน:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="sweet-mocha" value="0%"> 0%</label>
-                    <label class="opt"><input type="radio" name="sweet-mocha" value="25%"> 25%</label>
-                    <label class="opt"><input type="radio" name="sweet-mocha" value="50%"> 50%</label>
-                    <label class="opt"><input type="radio" name="sweet-mocha" value="75%" checked> 75% ✨Recommend✨</label>
-                    <label class="opt"><input type="radio" name="sweet-mocha" value="100%"> 100%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="0%"> 0%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="25%"> 25%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="50%"> 50%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="75%" checked> 75% ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="100%"> 100%</label>
                   </div>
                 </div>
               </div>
@@ -341,11 +558,11 @@
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
                 <div style="margin-top:8px"><strong>ระดับความหวาน:</strong>
                   <div class="option-row">
-                    <label class="opt"><input type="radio" name="sweet-latte" value="0%"> 0%</label>
-                    <label class="opt"><input type="radio" name="sweet-latte" value="25%"> 25%</label>
-                    <label class="opt"><input type="radio" name="sweet-latte" value="50%"> 50%</label>
-                    <label class="opt"><input type="radio" name="sweet-latte" value="75%" checked> 75% ✨Recommend✨</label>
-                    <label class="opt"><input type="radio" name="sweet-latte" value="100%"> 100%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="0%"> 0%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="25%"> 25%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="50%"> 50%</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="75%" checked> 75% ✨Recommend✨</label>
+                    <label class="opt"><input type="radio" name="sweetness" value="100%"> 100%</label>
                   </div>
                 </div>
               </div>
@@ -381,12 +598,6 @@
             <div class="meta">
               <h3>โกโก้เย็น (Ice Cocoa) — 70฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
-              <div style="margin-top:6px">
-                <select class="milk-select">
-                  <option>นมวัว (Cow's Milk)</option>
-                  <option>นมโอ๊ต (Oat Milk)</option>
-                </select>
-              </div>
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
               </div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
@@ -398,12 +609,6 @@
             <div class="meta">
               <h3>โกโก้มิ้นเย็น (Iced Choco Mint) — 80฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
-              <div style="margin-top:6px">
-                <select class="milk-select">
-                  <option>นมวัว (Cow's Milk)</option>
-                  <option>นมโอ๊ต (Oat Milk)</option>
-                </select>
-              </div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
@@ -417,17 +622,11 @@
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="มัตจะลัตเต(Matcha Latte)">
+          <div class="item" data-price="70" data-name="Matcha Latte">
             <img src="image/Matcha_latte.jpg" alt="Matcha_latte" class="menu-image">
             <div class="meta">
               <h3>มัตจะลัตเต(Matcha Latte) — 80฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
-              <div style="margin-top:6px">
-                <select class="milk-select">
-                  <option>นมวัว (Cow's Milk)</option>
-                  <option>นมโอ๊ต (Oat Milk)</option>
-                </select>
-              </div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
@@ -436,12 +635,6 @@
             <div class="meta">
               <h3>โฮจิฉะลัตเต(Hojicha Latte) — 80฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
-              <div style="margin-top:6px">
-                <select class="milk-select">
-                  <option>นมวัว (Cow's Milk)</option>
-                  <option>นมโอ๊ต (Oat Milk)</option>
-                </select>
-              </div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
@@ -458,12 +651,6 @@
             <div class="meta">
               <h3>นมคาราเมล / วานิลลา / เฮเซลนัท(Caramel / Vanilla / Hazelnut Milk) — 60฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
-              <div style="margin-top:6px">
-                <select class="milk-select">
-                  <option>นมวัว (Cow's Milk)</option>
-                  <option>นมโอ๊ต (Oat Milk)</option>
-                </select>
-              </div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
@@ -472,7 +659,7 @@
 
         <section class="card category" id="tea">
           <h2>หมวด: Tea & Refreshers</h2>
-          <div class="item" data-price="70" data-name="บอร์รี่รวมโซดา(Mixed Berry Soda)">
+          <div class="item" data-price="70" data-name="เบอร์รี่รวมโซดา(Mixed Berry Soda)">
             <div class="meta"><h3>เบอร์รี่รวมโซดา (Mixed Berry Soda) — 70฿</h3>
             <div style="margin-top:8px"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
             <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
@@ -512,7 +699,11 @@
       </main>
 
       <!-- Sidebar / Cart -->
-      <aside class="card">
+      <aside class="card" 
+      style="position:fixed;top:0;right:0;width:340px;height:100vh;
+      background:#fff;box-shadow:-4px 0 20px rgba(40,76,154,0.1);
+      padding:20px;overflow-y:auto;z-index:999;border-radius:0;">
+    
         <h3>ตะกร้าสินค้า</h3>
         <div id="cart-list"></div>
         <div style="margin-top:8px" class="flex"><strong>ราคารวม:</strong><div id="total" style="margin-left:auto">0฿</div></div>
@@ -579,10 +770,23 @@
     const item = btn.closest('.item');
     const basePrice = priceOf(item);
     const opts = gatherOptions(item);
-    const itemObj = {id:Date.now()+Math.random(), name: nameOf(item), basePrice, opts};
-    cart.push(itemObj);
+
+    // สร้าง key สำหรับเช็ก item ซ้ำ โดยไม่เอา qty
+    const optsKey = {...opts};
+    delete optsKey.qty;
+
+    const existing = cart.find(it => it.name === nameOf(item) && JSON.stringify({...it.opts, qty:1}) === JSON.stringify({...optsKey, qty:1}));
+
+    if(existing){
+      existing.opts.qty = (existing.opts.qty || 1) + 1;
+    } else {
+      const itemObj = {id:Date.now()+Math.random(), name: nameOf(item), basePrice, opts};
+      cart.push(itemObj);
+    }
     renderCart();
   }
+
+
 
   function openOptionsPrompt(btn){
     const item = btn.closest('.item');
@@ -631,7 +835,7 @@
 
   function removeItem(idx){ cart.splice(idx,1); renderCart(); }
 
-  function clearCart(){ if(confirm('ล้างตะกร้าจริงหรือไม่?')){ cart.length=0; renderCart(); document.getElementById('order-text').innerText=''; document.getElementById('copyMsg').innerText=''; }}
+  function clearCart(){ if(confirm('คุณต้องการล้างตะกร้าหรือไม่?')){ cart.length=0; renderCart(); document.getElementById('order-text').innerText=''; document.getElementById('copyMsg').innerText=''; }}
 
   function generateOrderText(){
     if(cart.length===0){ alert('ตะกร้าว่าง'); return; }
@@ -645,7 +849,7 @@
       const q = it.opts.qty || 1;
       const lineTotal = unit * q * qtyGlobal;
       total += lineTotal;
-      lines.push(`${i+1}. ${it.name} x${q*qtyGlobal} — ${unit}฿ each -> ${lineTotal}฿\n   (${formatOpts(it.opts)})`);
+      lines.push(`${i+1}. ${it.name} x${q*qtyGlobal} -> ${lineTotal}฿\n   ${formatOpts(it.opts)}`);
     });
     const txt = `Cloudbrew Order\n\n${lines.join('\n')}\n\nDelivery: ${addr||'(not provided)'}\nTotal: ${total}฿\n\nPlease confirm via LINE.`;
     document.getElementById('order-text').innerText = txt;
