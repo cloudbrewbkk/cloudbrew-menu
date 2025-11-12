@@ -32,27 +32,36 @@
   
     header {
       display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
+      align-items: center;       /* จัดให้รูปและข้อความอยู่ตรงกลางแนวตั้ง */
+      gap: 24px;                 /* เพิ่มระยะห่างระหว่างโลโก้กับข้อความ */
+      padding: 12px 20px;        /* เพิ่มช่องว่างรอบๆ header */
     }
   
     .logo {
-      width: 120px;
-      height: 120px;
+      width: 50px;
+      height: 50px;
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow);
     }
   
+
     .logo img {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      border-radius: 10px;
-      flex-shrink: 0; /* ✅ ป้องกันภาพหดตัวเมื่อจอย่อ */
+      width: 50px;       /* กำหนดความกว้างคงที่ตามต้องการ */
+      height: auto;       /* ให้คงสัดส่วนภาพ */
+      object-fit: contain; /* ป้องกันการบิดเบี้ยว */
     }
   
+    .header-text {
+      display: flex;
+      flex-direction: column; /* ให้ข้อความซ้อนกันเป็นบรรทัดใหม่ */
+    }
+
+    .small {
+      font-size: 0.9em;
+      color: #666;
+    }
+
     h1 {
       margin: 0;
       font-size: 1.6rem;
@@ -78,38 +87,51 @@
     }
   
     .item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px;
-    border-radius: var(--radius);
-    border: 1px solid #e2e8f0;
-    transition: all 0.2s ease;
-    background: #fff;
-    text-align: left; /* ✅ ทำให้ตัวหนังสือชิดซ้าย */
-  }
-  
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+      background: #fff;
+      text-align: left; /* ✅ ทำให้ตัวหนังสือชิดซ้าย */
+    }
+    
     .item:hover {
       border-color: var(--accent);
       box-shadow: 0 4px 10px rgba(40, 76, 154, 0.1);
       transform: translateY(-2px);
     }
-  
+    
     .item img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-    flex-shrink: 0; /* ✅ ป้องกันภาพหดตัวเมื่อจอย่อ */
-  }
-  
-  .meta {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left; /* ✅ ตัวหนังสือชิดซ้ายเสมอ */
-  }
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0; /* ✅ ป้องกันภาพหดตัวเมื่อจอย่อ */
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 1.6em;          /* ขนาดหัวข้อหลัก */
+      line-height: 1.3;          /* ระยะห่างบรรทัดให้ไม่ติด */
+    }
+
+    .small {
+      margin-top: 6px;
+      font-size: 1em;            /* ขนาดข้อความคำอธิบาย */
+      color: #555;
+      line-height: 1.4;
+    }
+    
+    .meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left; /* ✅ ตัวหนังสือชิดซ้ายเสมอ */
+    }
   
     .item h3 {
       margin: 0;
@@ -267,9 +289,8 @@
       <div class="logo">
         <img src="image/1.png" alt="Cloudbrew Logo">
       </div>
-      <div>
+      <div class="header-text">
         <h1>Cloudbrew — เมนู</h1>
-        <br>
         <div class="small">
           เลือกเมนู ใส่ตัวเลือก กดใส่ตะกร้า สรุป และคัดลอกข้อความเพื่อส่งใน LINE
         </div>
