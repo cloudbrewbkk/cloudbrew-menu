@@ -46,9 +46,11 @@
     }
   
     .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 10px;
+      flex-shrink: 0; /* ✅ ป้องกันภาพหดตัวเมื่อจอย่อ */
     }
   
     h1 {
@@ -265,8 +267,12 @@
       <div class="logo">
         <img src="image/1.png" alt="Cloudbrew Logo">
       </div>
+      <div>
         <h1>Cloudbrew — เมนู</h1>
-        <div class="small">เลือกเมนู ใส่ตัวเลือก กดใส่ตะกร้า สรุป และคัดลอกข้อความเพื่อส่งใน LINE</div>
+        <br>
+        <div class="small">
+          เลือกเมนู ใส่ตัวเลือก กดใส่ตะกร้า สรุป และคัดลอกข้อความเพื่อส่งใน LINE
+        </div>
       </div>
     </header>
 
