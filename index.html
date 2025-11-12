@@ -37,21 +37,6 @@
       padding: 12px 20px;        /* เพิ่มช่องว่างรอบๆ header */
     }
   
-    .logo {
-      width: 50px;
-      height: 50px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-  
-
-    .logo img {
-      width: 50px;       /* กำหนดความกว้างคงที่ตามต้องการ */
-      height: auto;       /* ให้คงสัดส่วนภาพ */
-      object-fit: contain; /* ป้องกันการบิดเบี้ยว */
-    }
-  
     .header-text {
       display: flex;
       flex-direction: column; /* ให้ข้อความซ้อนกันเป็นบรรทัดใหม่ */
@@ -286,9 +271,6 @@
 <body>
   <div class="container">
     <header>
-      <div class="logo">
-        <img src="image/1.png" alt="Cloudbrew Logo">
-      </div>
       <div class="header-text">
         <h1>Cloudbrew — เมนู</h1>
         <div class="small">
