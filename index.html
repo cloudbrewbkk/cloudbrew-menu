@@ -76,14 +76,16 @@
     }
   
     .item {
-      display: flex;
-      gap: 12px;
-      padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid #e2e8f0;
-      transition: all 0.2s ease;
-      background: #fff;
-    }
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: var(--radius);
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    background: #fff;
+    text-align: left; /* ✅ ทำให้ตัวหนังสือชิดซ้าย */
+  }
   
     .item:hover {
       border-color: var(--accent);
@@ -92,18 +94,20 @@
     }
   
     .item img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0; /* ✅ ป้องกันภาพหดตัวเมื่อจอย่อ */
+  }
   
-    .meta {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  .meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left; /* ✅ ตัวหนังสือชิดซ้ายเสมอ */
+  }
   
     .item h3 {
       margin: 0;
@@ -231,18 +235,21 @@
         font-size: 1.4rem;
       }
       .item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        flex-direction: row; /* ✅ ยังคงให้รูปอยู่ซ้าย */
+        align-items: flex-start;
+        text-align: left;
       }
-      .item img {
-        width: 100%;
-        height: auto;
-        max-height: 200px;
-      }
+
       .meta {
-        align-items: center;
+        align-items: flex-start;
+        text-align: left;
       }
+
+      .item img {
+        width: 120px; /* ✅ ขนาดคงที่ */
+        height: 120px;
+      }
+
       .btn {
         width: 100%;
         font-size: 1rem;
@@ -269,10 +276,10 @@
         <section class="card category" id="promo">
           <h2>หมวด: Promotion</h2>
 
-          <div class="item" data-price="90" data-name="TSCA Rank12">
+          <div class="item" data-price="95" data-name="TSCA Rank12">
             <img src="image/LightRoast3.png" alt="TSCA2025" class="menu-image">
             <div class="meta">
-              <h3>Special Beans TSCA2025 Rank12 (Americano) — 90฿</h3>
+              <h3>Special Beans TSCA2025 Rank12 (Americano) — 95฿</h3>
               <div class="small">(จำกัดจำนวนแก้วต่อวัน มีเฉพาะช่วงนี้เท่านั้น) อเมริกาโน่จากเมล็ดกาแฟรางวัลอันดับ 12 – TSCA2025</div>
               <div class="small">Flavor notes: Grape, Apricot, Apple, Lemon, Gooseberry, Sugary, Juicy, Rice, Crips Mouthfeel</div>
               <div style="margin-top:8px">
@@ -281,9 +288,9 @@
             </div>
           </div>
 
-          <div class="item" data-price="180" data-name="TSCA Rank12 + Signature Cloud">
+          <div class="item" data-price="200" data-name="TSCA Rank12 + Signature Cloud">
             <div class="meta">
-              <h3>Americano TSCA2025 Rank12 + Signature Cloud — 180฿</h3>
+              <h3>Americano TSCA2025 Rank12 + Signature Cloud — 200฿</h3>
               <div class="small">ตัวเลือก: Signature Cloud</div>
               <div class="options">
                 <select class="signature-select">
@@ -343,7 +350,7 @@
             <img src="image/Soft_cloud.jpg" alt="Soft_cloud" class="menu-image">
             <div class="meta">
               <h3>Soft Cloud Latte — 100฿</h3>
-              <div class="small">กาแฟรสเข้ม กลมกล่อมด้วยความหอมมันส์จากนมสด และกลิ่นหอมของดอกอัญชัญ และมะลิ หวานนุ่มกลมกล่อม</div>
+              <div class="small">กาแฟรสนุ่มละมุน ด้วยนมและครีมสด หวานหอมด้วยไซรัปกลิ่นดอกอัญชัญและมะลิสูตรพิเศษของทางร้าน (ไม่สามารถทำหวาน 0% ได้)</div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
@@ -354,10 +361,10 @@
         <section class="card category" id="coldbrew">
           <h2>หมวด: Cold Brew</h2>
 
-          <div class="item" data-price="65" data-name="Classic Cold Brew">
+          <div class="item" data-price="70" data-name="Classic Cold Brew">
             <img src="image/Coldbrew.jpg" alt="Coldbrew" class="menu-image">
             <div class="meta">
-              <h3>คลาสสิคโคลด์บรูว์ (Classic Cold Brew) — 65฿</h3>
+              <h3>คลาสสิคโคลด์บรูว์ (Classic Cold Brew) — 70฿</h3>
               <div class="options">
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
               </div>
@@ -365,20 +372,20 @@
             </div>
           </div>
 
-          <div class="item" data-price="90" data-name="Cold Brew Yuzu">
+          <div class="item" data-price="95" data-name="Cold Brew Yuzu">
             <img src="image/cold_yuzu.jpg" alt="cold_yuzu" class="menu-image">
             <div class="meta">
-              <h3>โคลด์บรูว์ยูซุ (Cold Brew Yuzu) — 90฿</h3>
+              <h3>โคลด์บรูว์ยูซุ (Cold Brew Yuzu) — 95฿</h3>
               <div class="small">ตัวเลือก: แยกน้ำแข็ง +5฿</div>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="75" data-name="Cold Brew Latte">
+          <div class="item" data-price="80" data-name="Cold Brew Latte">
             <img src="image/cold_latte.jpg" alt="cold_latte" class="menu-image">
             <div class="meta">
-              <h3>ลัตเตโคลด์บรูว์ (Cold Brew Latte) — 75฿</h3>
+              <h3>ลัตเตโคลด์บรูว์ (Cold Brew Latte) — 80฿</h3>
               <div class="options">
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:6px">
@@ -392,18 +399,18 @@
             </div>
           </div>
 
-          <div class="item" data-price="75" data-name="Cold Brew Tonic">
+          <div class="item" data-price="80" data-name="Cold Brew Tonic">
             <div class="meta">
-              <h3>โคลด์บรูว์ผสมโทนิก (Cold Brew Tonic) — 75฿</h3>
+              <h3>โคลด์บรูว์ผสมโทนิก (Cold Brew Tonic) — 80฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="85" data-name="Cold Brew Lemon Tonic">
+          <div class="item" data-price="90" data-name="Cold Brew Lemon Tonic">
             <img src="image/cold_lemon.jpg" alt="cold_lemon" class="menu-image">
             <div class="meta">
-              <h3>โคลด์บรูว์เลมอนโทนิก (Cold Brew Lemon Tonic) — 85฿</h3>
+              <h3>โคลด์บรูว์เลมอนโทนิก (Cold Brew Lemon Tonic) — 90฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
@@ -416,10 +423,10 @@
           <h2>หมวด: Coffee</h2>
 
           <!-- Iced Americano -->
-          <div class="item" data-price="60" data-name="Iced Americano">
+          <div class="item" data-price="65" data-name="Iced Americano">
             <img src="image/americano.jpg" alt="americano" class="menu-image">
             <div class="meta">
-              <h3>อเมริกาโน่เย็น (Iced Americano) — 60฿</h3>
+              <h3>อเมริกาโน่เย็น (Iced Americano) — 65฿</h3>
               <div class="options">
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
@@ -428,7 +435,7 @@
                     <label class="opt"><input type="radio" name="bean" value="Cloud Blend" checked> (กลางเข้ม) Cloud Blend ✨Recommend✨</label>
                     <label class="opt"><input type="radio" name="bean" value="Nam Pun Blend"> (กลาง) Nam Pun Blend</label>
                     <label class="opt"><input type="radio" name="bean" value="Doi Sam Muen"> (กลาง) Doi Sam Muen</label>
-                    <label class="opt"><input type="radio" name="bean" value="TSCA Rank12"> Special Beans TSCA2025 Rank12🏆</label>
+                    <label class="opt"><input type="radio" name="bean" value="TSCA Rank12" data-add="30"> Special Beans TSCA2025 Rank12🏆 (+30฿)</label>
                   </div>
                 </div>
 
@@ -448,10 +455,10 @@
           </div>
 
           <!-- Iced Black Coffee Orange (shares bean choices) -->
-          <div class="item" data-price="80" data-name="Iced Black Coffee Orange">
+          <div class="item" data-price="85" data-name="Iced Black Coffee Orange">
             <img src="image/americanoOrange.jpg" alt="americanoOrange" class="menu-image">
             <div class="meta">
-              <h3>อเมริกาโน่ส้ม (Iced Black Coffee Orange) — 80฿</h3>
+              <h3>อเมริกาโน่ส้ม (Iced Black Coffee Orange) — 85฿</h3>
               <div class="options">
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
@@ -467,10 +474,10 @@
           </div>
 
           <!-- Iced Americano Coconut, Honey Lemon similar to Orange beans -->
-          <div class="item" data-price="80" data-name="Iced Americano Coconut">
+          <div class="item" data-price="85" data-name="Iced Americano Coconut">
             <img src="image/coconut.jpg" alt="coconut" class="menu-image">
             <div class="meta">
-              <h3>อเมริกาโน่น้ำมะพร้าว (Iced Americano Coconut) — 80฿</h3>
+              <h3>อเมริกาโน่น้ำมะพร้าว (Iced Americano Coconut) — 85฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
@@ -484,9 +491,9 @@
             </div>
           </div>
 
-          <div class="item" data-price="80" data-name="Iced Black Coffee Honey Lemon">
+          <div class="item" data-price="85" data-name="Iced Black Coffee Honey Lemon">
             <div class="meta">
-              <h3>อเมริกาโน่น้ำผึ้งมะนาว (Iced Black Coffee Honey Lemon) — 80฿</h3>
+              <h3>อเมริกาโน่น้ำผึ้งมะนาว (Iced Black Coffee Honey Lemon) — 85฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:8px"><strong>เลือกเมล็ด:</strong>
                   <div class="option-row">
@@ -501,10 +508,10 @@
           </div>
 
           <!-- Caramel Macchiato -->
-          <div class="item" data-price="80" data-name="Iced Caramel Macchiato">
+          <div class="item" data-price="85" data-name="Iced Caramel Macchiato">
             <img src="image/Caramel.jpg" alt="Caramel" class="menu-image">
             <div class="meta">
-              <h3>คาราเมลมัคคียาโตเย็น (Iced Caramel Macchiato) — 80฿</h3>
+              <h3>คาราเมลมัคคียาโตเย็น (Iced Caramel Macchiato) — 85฿</h3>
               <div class="options">
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
@@ -529,10 +536,10 @@
           </div>
 
           <!-- Iced Mocha, Latte, etc. (abbreviated for brevity but implemented similarly) -->
-          <div class="item" data-price="70" data-name="Iced Mocha">
+          <div class="item" data-price="75" data-name="Iced Mocha">
             <img src="image/mocha.jpg" alt="mocha" class="menu-image">
             <div class="meta">
-              <h3>มอคาเย็น (Iced Mocha) — 70฿</h3>
+              <h3>มอคาเย็น (Iced Mocha) — 75฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
                 <div style="margin-top:8px"><strong>ระดับความหวาน:</strong>
@@ -549,10 +556,10 @@
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="Iced Latte">
+          <div class="item" data-price="75" data-name="Iced Latte">
             <img src="image/latte.jpg" alt="latte" class="menu-image">
             <div class="meta">
-              <h3>ลัตเตเย็น (Iced Latte) — 70฿</h3>
+              <h3>ลัตเตเย็น (Iced Latte) — 75฿</h3>
               <div class="options">
                 <label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
@@ -570,9 +577,9 @@
             </div>
           </div>
 
-          <div class="item" data-price="60" data-name="Esyen">
+          <div class="item" data-price="65" data-name="Esyen">
             <div class="meta">
-              <h3>เอสเย็น (Esyen) — 60฿</h3>
+              <h3>เอสเย็น (Esyen) — 65฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
               </div>
@@ -580,9 +587,9 @@
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="Espresso Tonic">
+          <div class="item" data-price="75" data-name="Espresso Tonic">
             <div class="meta">
-              <h3>เอสเพรสโซ่ผสมโทนิก (Espresso Tonic) — 70฿</h3>
+              <h3>เอสเพรสโซ่ผสมโทนิก (Espresso Tonic) — 75฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
@@ -593,10 +600,10 @@
         <!-- Non Coffee, Tea & Refreshers abbreviated for length but included in page -->
         <section class="card category" id="noncoffee">
           <h2>หมวด: Non Coffee</h2>
-          <div class="item" data-price="70" data-name="Ice Cocoa">
+          <div class="item" data-price="75" data-name="Ice Cocoa">
             <img src="image/cocoa.jpg" alt="cocoa" class="menu-image">
             <div class="meta">
-              <h3>โกโก้เย็น (Ice Cocoa) — 70฿</h3>
+              <h3>โกโก้เย็น (Ice Cocoa) — 75฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label>
                 <div style="margin-top:6px"><select class="milk-select"><option>นมวัว (Cow's Milk)</option><option>นมโอ๊ต (Oat Milk)</option></select></div>
               </div>
@@ -604,52 +611,52 @@
             </div>
           </div>
 
-          <div class="item" data-price="80" data-name="Iced Choco Mint">
+          <div class="item" data-price="85" data-name="Iced Choco Mint">
             <img src="image/cocoa_mint.jpg" alt="cocoa_mint" class="menu-image">
             <div class="meta">
-              <h3>โกโก้มิ้นเย็น (Iced Choco Mint) — 80฿</h3>
+              <h3>โกโก้มิ้นเย็น (Iced Choco Mint) — 85฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="Clear Matcha">
+          <div class="item" data-price="75" data-name="Clear Matcha">
             <img src="image/Matcha_Clear.jpg" alt="Matcha_Clear" class="menu-image">
             <div class="meta">
-              <h3>เคลียร์มัตจะ (Clear Matcha) — 70฿</h3>
+              <h3>เคลียร์มัตจะ (Clear Matcha) — 75฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="Matcha Latte">
+          <div class="item" data-price="85" data-name="Matcha Latte">
             <img src="image/Matcha_latte.jpg" alt="Matcha_latte" class="menu-image">
             <div class="meta">
-              <h3>มัตจะลัตเต(Matcha Latte) — 80฿</h3>
+              <h3>มัตจะลัตเต(Matcha Latte) — 85฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
           
-          <div class="item" data-price="70" data-name="โฮจิฉะลัตเต(Hojicha Latte)">
+          <div class="item" data-price="85" data-name="โฮจิฉะลัตเต(Hojicha Latte)">
             <div class="meta">
-              <h3>โฮจิฉะลัตเต(Hojicha Latte) — 80฿</h3>
+              <h3>โฮจิฉะลัตเต(Hojicha Latte) — 85฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
           
-          <div class="item" data-price="70" data-name="ชาไทย(Thai Tea) สูตรไม่ใส่สี">
+          <div class="item" data-price="65" data-name="ชาไทย(Thai Tea) สูตรไม่ใส่สี">
             <div class="meta">
-              <h3>ชาไทย(Thai Tea) สูตรไม่ใส่สี — 60฿</h3>
+              <h3>ชาไทย(Thai Tea) สูตรไม่ใส่สี — 65฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
           
-          <div class="item" data-price="70" data-name="CVH milk">
+          <div class="item" data-price="65" data-name="CVH milk">
             <div class="meta">
-              <h3>นมคาราเมล / วานิลลา / เฮเซลนัท(Caramel / Vanilla / Hazelnut Milk) — 60฿</h3>
+              <h3>นมคาราเมล / วานิลลา / เฮเซลนัท(Caramel / Vanilla / Hazelnut Milk) — 65฿</h3>
               <div class="options"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
               <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
@@ -659,36 +666,36 @@
 
         <section class="card category" id="tea">
           <h2>หมวด: Tea & Refreshers</h2>
-          <div class="item" data-price="70" data-name="เบอร์รี่รวมโซดา(Mixed Berry Soda)">
-            <div class="meta"><h3>เบอร์รี่รวมโซดา (Mixed Berry Soda) — 70฿</h3>
+          <div class="item" data-price="75" data-name="เบอร์รี่รวมโซดา(Mixed Berry Soda)">
+            <div class="meta"><h3>เบอร์รี่รวมโซดา (Mixed Berry Soda) — 75฿</h3>
             <div style="margin-top:8px"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
             <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="ยูซุโซดา(Yuzu Soda)">
-            <div class="meta"><h3>ยูซุโซดา (Yuzu Soda) — 70฿</h3>
+          <div class="item" data-price="75" data-name="ยูซุโซดา(Yuzu Soda)">
+            <div class="meta"><h3>ยูซุโซดา (Yuzu Soda) — 75฿</h3>
             <div style="margin-top:8px"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
             <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="น้ำผึ้งมะนาวโซดา(Honey Lemon Soda)">
-            <div class="meta"><h3>น้ำผึ้งมะนาวโซดา(Honey Lemon Soda) — 70฿</h3>
+          <div class="item" data-price="75" data-name="น้ำผึ้งมะนาวโซดา(Honey Lemon Soda)">
+            <div class="meta"><h3>น้ำผึ้งมะนาวโซดา(Honey Lemon Soda) — 75฿</h3>
             <div style="margin-top:8px"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
             <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="ชาพีช(Peach Tea)">
-            <div class="meta"><h3>ชาพีช(Peach Tea) — 70฿</h3>
+          <div class="item" data-price="75" data-name="ชาพีช(Peach Tea)">
+            <div class="meta"><h3>ชาพีช(Peach Tea) — 75฿</h3>
             <div style="margin-top:8px"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
             <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
           </div>
 
-          <div class="item" data-price="70" data-name="ชามะนาว(Lemon Tea)">
-            <div class="meta"><h3>ชามะนาว(Lemon Tea) — 70฿</h3>
+          <div class="item" data-price="75" data-name="ชามะนาว(Lemon Tea)">
+            <div class="meta"><h3>ชามะนาว(Lemon Tea) — 75฿</h3>
             <div style="margin-top:8px"><label><input type="checkbox" class="opt-ice" data-add="5"> แยกน้ำแข็ง (+5฿)</label></div>
             <div style="margin-top:8px"><button class="btn" onclick="addToCartFromElem(this)">ใส่ตะกร้า</button></div>
             </div>
@@ -700,7 +707,7 @@
 
       <!-- Sidebar / Cart -->
       <aside class="card" 
-      style="position:fixed;top:0;right:0;width:340px;height:100vh;
+      style="position:sticky;top:0;right:0;width:340px;height:100vh;
       background:#fff;box-shadow:-4px 0 20px rgba(40,76,154,0.1);
       padding:20px;overflow-y:auto;z-index:999;border-radius:0;">
     
@@ -757,7 +764,16 @@
     if(sig) opts.signature = sig.value;
     // bean radios (look for radios within this item)
     const radios = container.querySelectorAll('input[type="radio"]');
-    radios.forEach(r=>{ if(r.checked){ const name = r.name; opts[name]=r.value }});
+    let totalAdd = 0;
+    radios.forEach(r => {
+      if (r.checked) {
+        const name = r.name;
+        opts[name] = r.value;
+        if (r.dataset.add) totalAdd += Number(r.dataset.add);
+      }
+    });
+    if (totalAdd > 0) opts._extraAdd = totalAdd;
+
     // sweetness
     // qty default 1
     opts.qty = 1;
@@ -811,11 +827,20 @@
     document.getElementById('total').innerText = total+'฿';
   }
 
-  function computePrice(item){
+  function computePrice(item) {
     let p = item.basePrice;
-    if(item.opts.iceAdd) p += Number(item.opts.iceAdd);
+
+    // บวกค่าน้ำแข็งถ้ามี
+    if (item.opts.iceAdd) p += Number(item.opts.iceAdd);
+
+    // ✅ บวกค่า data-add ของ radio ที่เลือก
+    if (item.opts && item.opts._extraAdd) {
+      p += Number(item.opts._extraAdd);
+    }
+
     return p;
   }
+
 
   function formatOpts(opts){
     const lines = [];
